@@ -44,8 +44,9 @@ define(function(require) {
                     }
                     if (this._isVisibleTop && this._isVisibleBottom) {
                         if((!this.model.get('_sound-manager')[0].onlyOnce)||(!this.alreadyPlayed)){
-                            this.playAudio();
-                            this.alreadyPlayed = true;
+                            if(this.model.get('_sound-manager')[0].autoplay){
+                                this.playAudio();
+                            }                            
                         }                    
                     }
                 }
@@ -66,6 +67,9 @@ define(function(require) {
                 }
                 this.audio.currentTime = 0;
                 this.audio.play();
+                if(!this.alreadyPlayed){
+                    this.alreadyPlayed = true;
+                }
             }
         }
 
