@@ -46,7 +46,7 @@
                     "type": "object",
                     "required": true,
                     "title": "Sound file",
-                    "mp3": {
+                    "src": {
                       "type":"string",
                       "required":false,
                       "default": "",
