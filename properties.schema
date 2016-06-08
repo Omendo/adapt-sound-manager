@@ -43,7 +43,7 @@
                     "validators": []
                   },
                   "file": {
-                    "type": "object",
+                    "type": "string",
                     "required": true,
                     "title": "Sound file(s)",
                     "inputType": "Text",
