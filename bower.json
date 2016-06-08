@@ -1,0 +1,16 @@
+{
+  "name": "adapt-sound-manager",
+  "version": "0.0.2",
+  "homepage": "https://github.com/Omendo/adapt-sound-manager",
+  "issues": "https://github.com/adaptlearning/adapt-sound-manager/issues",
+  "displayName" : "Sound manager",
+  "extension" : "soundmanager",
+  "description": "A sound manager extension",
+  "main": "/js/adapt-sound-manager.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPLv3",
+  "targetAttribute": "_sound-manager"
+}

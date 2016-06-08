@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "required": false,
+  "properties": {
+    "pluginLocations": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "config": {
+          "type": "object"
+        },
+        "course": {
+          "type": "object"
+        },
+        "contentobject": {
+          "type": "object"
+        },
+        "article": {
+          "type": "object"
+        },
+        "block": {
+          "type": "object"
+        },
+        "component": {
+          "type": "object",
+          "properties": {
+            "_sound-manager": {
+              "type": "array",
+              "required": false,
+              "title": "Sound(s)",
+              "items": {
+                "type": "object",
+                "required": true,
+                "title": "Items",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "required": false,
+                    "title": "Title",
+                    "inputType": "Text",
+                    "validators": []
+                  },
+                  "file": {
+                    "type": "object",
+                    "required": true,
+                    "title": "Sound file(s)",
+                    "inputType": "Text",
+                    "properties": {
+                      "mp3": {
+                        "type":"string",
+                        "required":false,
+                        "default": "",
+                        "title": "MP3 Link",
+                        "inputType": "Asset:audio",
+                        "validators": [],
+                        "help": "Link to an MP3 audio"
+                      }
+                    }
+                  },
+                  "autoplay": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": false,
+                    "title": "Play sound when on screen",
+                    "inputType": {"type": "Boolean", "options": [true, false]},
+                    "validators": [],
+                    "help": "If set to 'true', sound will be played when component is fully on screen."
+                  },
+                  "onlyOnce": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": true,
+                    "title": "Play only once(automatically)",
+                    "inputType": {"type": "Boolean", "options": [true, false]},
+                    "validators": [],
+                    "help": "If set to 'true', sound will be played automatically only once, you'll be able to play it again by clicking the icon."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
