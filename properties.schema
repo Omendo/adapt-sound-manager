@@ -45,17 +45,15 @@
                   "file": {
                     "type": "object",
                     "required": true,
-                    "title": "Sound file",
-                    "properties": {
-                      "mp3": {
-                        "type":"string",
-                        "required":false,
-                        "default": "",
-                        "title": "MP3 Link",
-                        "inputType": "Asset:audio",
-                        "validators": ["required"],
-                        "help": "Link to an MP3 audio"
-                      }
+                    "title": "Sound file"
+                    "file": {
+                      "type":"string",
+                      "required":false,
+                      "default": "",
+                      "title": "MP3 Link",
+                      "inputType": "Asset:audio",
+                      "validators": ["required"],
+                      "help": "Link to an MP3 audio"
                     }
                   },
                   "autoplay": {
