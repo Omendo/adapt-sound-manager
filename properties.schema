@@ -43,10 +43,9 @@
                     "validators": []
                   },
                   "file": {
-                    "type": "string",
+                    "type": "object",
                     "required": true,
-                    "title": "Sound file(s)",
-                    "inputType": "Text",
+                    "title": "Sound file",
                     "properties": {
                       "mp3": {
                         "type":"string",
@@ -54,7 +53,7 @@
                         "default": "",
                         "title": "MP3 Link",
                         "inputType": "Asset:audio",
-                        "validators": [],
+                        "validators": ["required"],
                         "help": "Link to an MP3 audio"
                       }
                     }
