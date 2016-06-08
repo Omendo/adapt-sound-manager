@@ -62,7 +62,7 @@ define(function(require) {
                 if(this.audio != null){
                     this.audio.pause();
                 }else{
-                    this.audio = new Audio(this.model.get('_sound-manager')[0].file);
+                    this.audio = new Audio(this.model.get('_sound-manager')[0].file.src);
                 }
                 this.audio.currentTime = 0;
                 this.audio.play();
