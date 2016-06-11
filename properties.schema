@@ -33,6 +33,7 @@
               "sounds": {
                 "type": "array",
                 "required": true,
+                "title": "Sound",
                 "properties": {
                   "title": {
                     "type": "string",
@@ -42,41 +43,34 @@
                     "validators": []
                   },
                   "src": {
-                    "type": "object",
-                    "required": true,
-                    "title": "Sound file",
-                    "properties": {
-                      "src": {
-                        "type":"string",
-                        "required":false,
-                        "default": "",
-                        "title": "MP3 Link",
-                        "inputType": "Asset:audio",
-                        "validators": ["required"],
-                        "help": "Link to an MP3 audio"
-                      }
-                    }
+                    "type":"string",
+                    "required":false,
+                    "default": "",
+                    "title": "MP3 Link",
+                    "inputType": "Asset:audio",
+                    "validators": ["required"],
+                    "help": "Link to an MP3 audio"
                   }
                 }
-              },
-              "autoplay": {
-                "type": "boolean",
-                "required": false,
-                "default": false,
-                "title": "Play sound when on screen",
-                "inputType": {"type": "Boolean", "options": [true, false]},
-                "validators": [],
-                "help": "If set to 'true', sound will be played when component is fully on screen."
-              },
-              "onlyOnce": {
-                "type": "boolean",
-                "required": false,
-                "default": true,
-                "title": "Play only once(automatically)",
-                "inputType": {"type": "Boolean", "options": [true, false]},
-                "validators": [],
-                "help": "If set to 'true', sound will be played automatically only once, you'll be able to play it again by clicking the icon."
               }
+            },
+            "autoplay": {
+              "type": "boolean",
+              "required": false,
+              "default": false,
+              "title": "Play sound when on screen",
+              "inputType": {"type": "Boolean", "options": [true, false]},
+              "validators": [],
+              "help": "If set to 'true', sound will be played when component is fully on screen."
+            },
+            "onlyOnce": {
+              "type": "boolean",
+              "required": false,
+              "default": true,
+              "title": "Play only once(automatically)",
+              "inputType": {"type": "Boolean", "options": [true, false]},
+              "validators": [],
+              "help": "If set to 'true', sound will be played automatically only once, you'll be able to play it again by clicking the icon."
             }
           }
         }
