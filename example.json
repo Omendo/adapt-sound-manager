@@ -1,12 +1,16 @@
 // add to component in component.json
 
-"_sound-manager": [
-      {
-        "title": "test",
-        "file": {
-          "src": "course/fr/assets/test.mp3"
-        },
+"_sound-manager": {
+        "sounds": [
+          {
+            "title": "Sound 1",
+            "src": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3"
+          },
+          {
+            "title": "Sound 2",
+            "src": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3"
+          }
+        ],
         "autoplay": true,
         "onlyOnce": true
-      }
-    ]
+    },
