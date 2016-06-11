@@ -33,7 +33,7 @@
               "sounds": {
                 "type": "array",
                 "required": true,
-                "Items": {
+                "properties": {
                   "title": {
                     "type": "string",
                     "required": false,
