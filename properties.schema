@@ -33,8 +33,7 @@
               "sounds": {
                 "type": "array",
                 "required": true,
-                "title": "Items",
-                "properties": {
+                "Items": {
                   "title": {
                     "type": "string",
                     "required": false,
@@ -42,7 +41,7 @@
                     "inputType": "Text",
                     "validators": []
                   },
-                  "file": {
+                  "src": {
                     "type": "object",
                     "required": true,
                     "title": "Sound file",
