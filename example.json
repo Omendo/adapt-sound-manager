@@ -4,17 +4,17 @@
     "sounds": [
       {
         "title": "Sound 1",
-        "mp3": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3",
-        "ogg": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.ogg",
-        "wav": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.wav",
-        "aac": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.aac"
+        "mp3": "course/fr/assets/mySound.mp3",
+        "ogg": "course/fr/assets/mySound.ogg",
+        "wav": "course/fr/assets/mySound.wav",
+        "aac": "course/fr/assets/mySound.aac"
       },
       {
         "title": "Sound 2",
-        "mp3": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3",
-        "ogg": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.ogg",
-        "wav": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.wav",
-        "aac": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.aac"
+        "mp3": "course/fr/assets/mySound2.mp3",
+        "ogg": "course/fr/assets/mySound2.ogg",
+        "wav": "course/fr/assets/mySound2.wav",
+        "aac": "course/fr/assets/mySound2.aac"
       }
     ],
     "autoplay": true,

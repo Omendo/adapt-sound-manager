@@ -2,12 +2,13 @@ define(function(require) {
 
     var Adapt = require('coreJS/adapt');
     var Backbone = require('backbone');
-    var Buzz = require('./lib/buzz');
+    var Howler = require('./lib/howler');
 
     var SoundManagerView = Backbone.View.extend({
 
         alreadyPlayed: false,
         soundsList : null,
+        currentSound: 0,
 
         initialize: function () {
             this.render();
@@ -17,7 +18,7 @@ define(function(require) {
             "click .sound-manager-extension-button": "onSoundManagerClick"
         },
 
-        preRender: function() {
+        preRender: function() { 
         },
 
         render: function () {
@@ -30,21 +31,32 @@ define(function(require) {
             this.soundsList = new Array();
             for(var i=0;i<sndArray.length;i++) {
                 var tmpArray = new Array();
-                if((Buzz.isOGGSupported())&&(sndArray[i].ogg!=undefined)&&(sndArray[i].ogg!='')){
+                if((sndArray[i].ogg!=undefined)&&(sndArray[i].ogg!='')){
                     tmpArray.push(sndArray[i].ogg);
                 }
-                if((Buzz.isMP3Supported())&&(sndArray[i].mp3!=undefined)&&(sndArray[i].mp3!='')){
+                if((sndArray[i].mp3!=undefined)&&(sndArray[i].mp3!='')){
                     tmpArray.push(sndArray[i].mp3);
                 }
-                if((Buzz.isWAVSupported())&&(sndArray[i].wav!=undefined)&&(sndArray[i].wav!='')){
+                if((sndArray[i].wav!=undefined)&&(sndArray[i].wav!='')){
                     tmpArray.push(sndArray[i].wav);
                 }
-                if((Buzz.isAACSupported())&&(sndArray[i].aac!=undefined)&&(sndArray[i].aac!='')){
+                if((sndArray[i].aac!=undefined)&&(sndArray[i].aac!='')){
                     tmpArray.push(sndArray[i].aac);
                 }
-                this.soundsList.push(new Buzz.sound(tmpArray, {preload:true, webAudioApi:true}));
+                var self = this;
+
+                this.soundsList.push(new Howl({
+                    urls: tmpArray,
+                    onend: function() {
+                        if(self.currentSound<self.soundsList.length) {
+                            self.playAudio();
+                        }else{
+                            self.currentSound = 0;
+                        }
+                    }
+                }));
             }
-                        
+
             this.$el.html(template(data)).appendTo($('.' + this.model.get('_id')));
             _.defer(_.bind(this.postRender, this));
         },
@@ -73,14 +85,8 @@ define(function(require) {
 
         playAudio: function() {
             var self = this;
-            this.soundsList.forEach(function(element, index) {
-                if(index<self.soundsList.length-1){
-                    element.bindOnce('ended', function(e) {
-                        self.soundsList[index+1].play();
-                    });
-                }
-            });
-            this.soundsList[0].play();
+            this.soundsList[this.currentSound].stop().play();
+            this.currentSound++;
         }
 
     });
