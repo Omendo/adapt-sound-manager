@@ -44,14 +44,41 @@
                         "inputType": "Text",
                         "validators": []
                       },
-                      "src": {
+                      "mp3": {
                         "type": "string",
                         "required":false,
                         "default": "",
-                        "title": "MP3 Link",
+                        "title": "MP3 file",
                         "inputType": "Asset:audio",
                         "validators": ["required"],
-                        "help": "Link to an MP3 audio"
+                        "help": "Link to an MP3 audio file"
+                      },
+                      "ogg": {
+                        "ogg": "string",
+                        "required":false,
+                        "default": "",
+                        "title": "ogg file",
+                        "inputType": "Asset:audio",
+                        "validators": [],
+                        "help": "Link to an Ogg audio file"
+                      },
+                      "wav": {
+                        "type": "string",
+                        "required":false,
+                        "default": "",
+                        "title": "wav file",
+                        "inputType": "Asset:audio",
+                        "validators": [],
+                        "help": "Link to a wav audio file"
+                      },
+                      "aac": {
+                        "type": "string",
+                        "required":false,
+                        "default": "",
+                        "title": "aac file",
+                        "inputType": "Asset:audio",
+                        "validators": [],
+                        "help": "Link to an aac audio file"
                       }
                     }
                   }

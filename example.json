@@ -4,13 +4,19 @@
     "sounds": [
       {
         "title": "Sound 1",
-        "src": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3"
+        "mp3": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3",
+        "ogg": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.ogg",
+        "wav": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.wav",
+        "aac": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.aac"
       },
       {
         "title": "Sound 2",
-        "src": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3"
+        "mp3": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.mp3",
+        "ogg": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.ogg",
+        "wav": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.wav",
+        "aac": "course/fr/assets/1ec2b2cfb00bedb5cf92a813df1af078c10af083.aac"
       }
     ],
     "autoplay": true,
     "onlyOnce": true
-},
+}
