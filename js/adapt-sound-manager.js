@@ -92,7 +92,7 @@ define(function(require) {
     });
     
     Adapt.on('componentView:postRender', function(view) {
-        if (view.model.has('_sound-manager') && view.model.get('_sound-manager').sounds != undefined) {
+        if (view.model.has('_sound-manager') && view.model.get('_sound-manager').sounds != undefined && view.model.get('_sound-manager').sounds.length>0) {
             new SoundManagerView({
                 model: view.model
             });
