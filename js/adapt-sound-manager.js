@@ -12,10 +12,14 @@ define(function(require) {
 
         initialize: function () {
             this.render();
+            var AdaptEvents = {
+                "navigation:backButton": this.stopAudio
+            };
+            this.listenTo(Adapt, AdaptEvents);
         },
 
         events: {
-            "click .sound-manager-extension-button": "onSoundManagerClick"
+            "click .sound-manager-extension-button": "onSoundManagerClick",
         },
 
         preRender: function() { 
@@ -47,6 +51,7 @@ define(function(require) {
 
                 this.soundsList.push(new Howl({
                     urls: tmpArray,
+                    buffer: true,
                     onend: function() {
                         if(self.currentSound<self.soundsList.length) {
                             self.playAudio();
@@ -84,9 +89,19 @@ define(function(require) {
         },
 
         playAudio: function() {
-            var self = this;
+            if(window.currentSound != null){
+                window.currentSound.stop();
+            }
+            window.currentSound = this.soundsList[this.currentSound];
             this.soundsList[this.currentSound].stop().play();
             this.currentSound++;
+        },
+
+        stopAudio: function() {
+            if(window.currentSound != null){
+                window.currentSound.stop();
+            }
+            window.currentSound = null;
         }
 
     });
