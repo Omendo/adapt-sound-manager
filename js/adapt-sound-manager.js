@@ -72,11 +72,21 @@ define(function(require) {
 
         inview: function(event, visible, visiblePartX, visiblePartY) {
             if (visible) {
-                if(this.model.get('_sound-manager').autoplay){
-                    if(!this.alreadyPlayed) {
-                       this.playAudio();
-                       if(this.model.get('_sound-manager').onlyOnce){
-                            this.alreadyPlayed = true;
+                if (visiblePartY === 'top') {
+                    this._isVisibleTop = true;
+                } else if (visiblePartY === 'bottom') {
+                    this._isVisibleBottom = true;
+                } else {
+                    this._isVisibleTop = true;
+                    this._isVisibleBottom = true;
+                }
+                if (this._isVisibleTop && this._isVisibleBottom) {
+                    if(this.model.get('_sound-manager').autoplay){
+                        if(!this.alreadyPlayed) {
+                           this.playAudio();
+                           if(this.model.get('_sound-manager').onlyOnce){
+                                this.alreadyPlayed = true;
+                           }
                        }
                    }
                }
