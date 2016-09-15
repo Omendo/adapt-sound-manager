@@ -2,18 +2,17 @@ define(function(require) {
 
     var Adapt = require('coreJS/adapt');
     var Backbone = require('backbone');
-    var Howler = require('./lib/howler');
+    var buzz = require('./lib/buzz');
 
     var SoundManagerView = Backbone.View.extend({
 
         alreadyPlayed: false,
         soundsList : null,
-        currentSound: 0,
 
         initialize: function () {
             this.render();
             var AdaptEvents = {
-                "navigation:backButton": this.stopAudio
+                "router:location": this.stopAudio,
             };
             this.listenTo(Adapt, AdaptEvents);
         },
@@ -28,40 +27,25 @@ define(function(require) {
         render: function () {
             // Convert model data into JSON
             var data = this.model.toJSON();
-            var template = Handlebars.templates["sound-manager"];
-
             //load sounds(s)
             var sndArray = this.model.get('_sound-manager').sounds;
-            this.soundsList = new Array();
+            var sndList = new Array();
             for(var i=0;i<sndArray.length;i++) {
-                var tmpArray = new Array();
-                if((sndArray[i].ogg!=undefined)&&(sndArray[i].ogg!='')){
-                    tmpArray.push(sndArray[i].ogg);
+                if((buzz.isOGGSupported())&&(sndArray[i].ogg!=undefined)&&(sndArray[i].ogg!='')){
+                    sndList.push(new buzz.sound(sndArray[i].ogg));
                 }
-                if((sndArray[i].mp3!=undefined)&&(sndArray[i].mp3!='')){
-                    tmpArray.push(sndArray[i].mp3);
+                if((buzz.isMP3Supported())&&(sndArray[i].mp3!=undefined)&&(sndArray[i].mp3!='')){
+                    sndList.push(new buzz.sound(sndArray[i].mp3));
                 }
-                if((sndArray[i].wav!=undefined)&&(sndArray[i].wav!='')){
-                    tmpArray.push(sndArray[i].wav);
+                if((buzz.isWAVSupported())&&(sndArray[i].wav!=undefined)&&(sndArray[i].wav!='')){
+                    sndList.push(new buzz.sound(sndArray[i].wav));
                 }
-                if((sndArray[i].aac!=undefined)&&(sndArray[i].aac!='')){
-                    tmpArray.push(sndArray[i].aac);
-                }
-                var self = this;
-
-                this.soundsList.push(new Howl({
-                    urls: tmpArray,
-                    buffer: true,
-                    onend: function() {
-                        if(self.currentSound<self.soundsList.length) {
-                            self.playAudio();
-                        }else{
-                            self.currentSound = 0;
-                        }
-                    }
-                }));
+                if((buzz.isAACSupported())&&(sndArray[i].aac!=undefined)&&(sndArray[i].aac!='')){
+                    sndList.push(new buzz.sound(sndArray[i].aac));
+                }                
             }
-
+            this.soundsList = sndList;
+            var template = Handlebars.templates["sound-manager"];
             this.$el.html(template(data)).appendTo($('.' + this.model.get('_id')));
             _.defer(_.bind(this.postRender, this));
         },
@@ -99,19 +83,24 @@ define(function(require) {
         },
 
         playAudio: function() {
-            if(window.currentSound != null){
-                window.currentSound.stop();
-            }
-            window.currentSound = this.soundsList[this.currentSound];
-            this.soundsList[this.currentSound].stop().play();
-            this.currentSound++;
+            this.stopAudio();
+            window.currentList = this.soundsList;
+            window.currentList.forEach(function(element, index){
+                if(index<window.currentList.length-1){
+                    element.bindOnce('ended', function(e){
+                        window.currentIndex = index;
+                        window.currentList[index+1].play();
+                    });
+                }
+            });
+            window.currentIndex = 0;
+            window.currentList[0].play();
         },
 
         stopAudio: function() {
-            if(window.currentSound != null){
-                window.currentSound.stop();
+            if(window.currentList != null){
+                window.currentList[window.currentIndex].stop();
             }
-            window.currentSound = null;
         }
 
     });
